@@ -13,6 +13,7 @@ public class SignupOne extends JFrame implements ActionListener{
     JRadioButton male, female, single, married, others;
     SignupOne(){
         setLayout(null);
+        setTitle("NEW ACCOUNT APPLICATION FROM - PAGE 1");
 
         Random ran = new Random();
         random = Math.abs((ran.nextLong()% 9000L) + 1000L);
@@ -22,10 +23,10 @@ public class SignupOne extends JFrame implements ActionListener{
         formno.setBounds(140, 20, 600, 40);
         add(formno);
 
-        JLabel personDetails = new JLabel("Page 1: Personal Details");
-        personDetails.setFont(new Font("Raleway", Font.BOLD, 22));
-        personDetails.setBounds(250, 80, 400, 30);
-        add(personDetails);
+        JLabel personalDetails = new JLabel("Page 1: Personal Details");
+        personalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
+        personalDetails.setBounds(250, 80, 400, 30);
+        add(personalDetails);
 
         JLabel name = new JLabel("NAME :");
         name.setFont(new Font("Raleway", Font.BOLD, 24));
@@ -156,7 +157,7 @@ public class SignupOne extends JFrame implements ActionListener{
         JButton next = new JButton("Next");
 //        next.setBackground(Color.BLACK);
 //        next.setForeground(Color.WHITE);
-        next.setFont(new Font("Raleway", Font.BOLD, 20));
+//        next.setFont(new Font("Raleway", Font.BOLD, 20));
         next.setBounds(670,660, 80, 30);
         next.addActionListener(this);
         add(next);
@@ -203,6 +204,10 @@ public class SignupOne extends JFrame implements ActionListener{
                 Conn c = new Conn();
                 String query = "insert into signup values('"+formno+"', '"+name+"', '"+fname+"','"+dob+"','"+gender+"','"+email+"','"+maritalStatus+"','"+address+"','"+city+"','"+state+"', '"+pin+"')";
                 c.s.executeUpdate(query);
+
+                setVisible(false);
+                new SignupTwo(formno).setVisible(true);
+
             }
         } catch(Exception e){
             System.out.println(e);
